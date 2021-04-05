@@ -1,0 +1,139 @@
+@import "variables";
+
+
+
+@mixin main-btn {
+  //@include font-main-bold;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  overflow-wrap: break-word;
+  @include fluidFontSize(16px, 18px, 320px, 1920px, 18px);
+  @include fluidLineHeight(35px, 30px, 320px, 1920px, 18px);
+  //font-family: inherit;
+  //letter-spacing: 0.03em;
+  //font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  border: 2px solid $color-main;
+  text-transform: uppercase;
+  //padding-top: 1.2em; // чтобы менялось пропорционально относительно шрифта
+  //padding-bottom: 1.2em; // чтобы менялось пропорционально относительно шрифта
+  transition: $transition;
+  border-radius: $border-radius;
+  background-color: white;
+
+  &:hover {
+    border: 2px solid transparent;
+    color: white;
+    background-color: $color-main;
+  }
+
+
+  //@media (max-width: 991px) {
+  //  margin-right: 0;
+  //  margin-bottom: 10px;
+  //  width: fit-content;
+  //  padding: 0 0.5em;
+  //}
+
+  @media (max-width: 991px) {
+  }
+
+  @media (max-width: 767px) {
+  }
+  //border-radius: .7em; // чтобы менялось пропорционально относительно шрифта
+}
+
+
+
+
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function calcFluidFontSize($f-min, $f-max, $w-min, $w-max, $units: px) {
+  $f-min: strip-unit($f-min);
+  $f-max: strip-unit($f-max);
+  $w-min: strip-unit($w-min);
+  $w-max: strip-unit($w-max);
+
+  $k: ($f-max - $f-min)/($w-max - $w-min);
+  $b: $f-min - $k * $w-min;
+
+  $b: $b + $units;
+
+  @return calc( #{$k} * 100vw + #{$b} );
+}
+
+@mixin fluidFontSize($f-min, $f-max, $w-min, $w-max, $fallback: false) {
+
+  font-size: $f-min;
+
+  @media (min-width: $w-min) {
+    @if ($fallback) {
+      font-size: $fallback;
+    }
+    font-size: calcFluidFontSize($f-min, $f-max, $w-min, $w-max, px);
+  }
+  @media (min-width: $w-max) {
+    font-size: $f-max;
+  }
+}
+
+
+
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+@function calcFluidLineHeight($f-min, $f-max, $w-min, $w-max, $units: px) {
+  $f-min: strip-unit($f-min);
+  $f-max: strip-unit($f-max);
+  $w-min: strip-unit($w-min);
+  $w-max: strip-unit($w-max);
+
+  $k: ($f-max - $f-min)/($w-max - $w-min);
+  $b: $f-min - $k * $w-min;
+
+  $b: $b + $units;
+
+  @return calc( #{$k} * 100vw + #{$b} );
+}
+
+@mixin fluidLineHeight($f-min, $f-max, $w-min, $w-max, $fallback: false) {
+
+  line-height: $f-min;
+
+  @media (min-width: $w-min) {
+    @if ($fallback) {
+      line-height: $fallback;
+    }
+    line-height: calcFluidLineHeight($f-min, $f-max, $w-min, $w-max, px);
+  }
+  @media (min-width: $w-max) {
+    line-height: $f-max;
+  }
+}
+
+
+.fluid-font-size {
+  @include fluidFontSize(24px, 36px, 320px, 1440px, 18px);
+}
+
+.fluid-line-height {
+  @include fluidLineHeight(35px, 52px, 320px, 1440px, 18px);
+}
+
+

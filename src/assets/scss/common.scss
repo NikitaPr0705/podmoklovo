@@ -1,0 +1,172 @@
+@import "variables";
+@import "mixins";
+
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+input,
+textarea,
+button {
+  //font-family: inherit;
+  outline: none;
+
+}
+
+textarea {
+  resize: none;
+  outline: none;
+}
+
+
+button {
+  padding: 0;
+}
+
+
+.container{
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+
+  @media screen and (min-width: 576px){
+    max-width: 580px;
+  }
+
+  @media screen and (min-width: 768px){
+    max-width: 720px;
+    padding: 0 15px;
+  }
+
+  @media screen and (min-width: 992px){
+    max-width: 960px;
+  }
+
+  @media screen and (min-width: 1200px){
+    max-width: 1200px;
+  }
+
+  @media screen and (min-width: 1300px){
+    max-width: 1285px;
+  }
+
+  @media screen and (min-width: 1440px){
+    max-width: 1385px;
+  }
+
+  @media screen and (min-width: 1680px){
+    max-width: 1440px;
+  }
+}
+
+.btn-main {
+  @include main-btn;
+
+  &.__first-section {
+    margin-right: 1%;
+
+
+    &:last-child {
+      margin-right: 0;
+
+      @media (max-width: 991px) {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 991px) {
+      margin-right: 0;
+      margin-bottom: 10px;
+      //width: fit-content;
+      //padding: 0 0.5em;
+    }
+  }
+}
+
+.btn-default {
+  max-width: 371px;
+
+  @media (max-width: 991px) {
+    max-width: 170px;
+  }
+  
+  &.__mobile-big-btn {
+    @media (max-width: 991px) {
+      max-width: 290px;
+    }
+  } 
+}
+
+.btn-main--small {
+  max-width: 223px;
+}
+
+.btn-main--big {
+  max-width: 896px;
+
+  @media (max-width: 991px) {
+    max-width: 290px;
+  }
+}
+
+
+.read-more-link {
+  text-decoration: underline;
+}
+
+.picture {
+  width: 100%;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: 100%;
+
+  }
+}
+
+.underline-text {
+  padding-bottom: 3px;
+  border-bottom: 1px solid $color-main;
+}

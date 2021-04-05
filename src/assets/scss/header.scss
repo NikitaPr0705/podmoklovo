@@ -1,0 +1,165 @@
+@import "variables";
+@import "mixins";
+
+.header {
+  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.15);
+
+  @media (min-width: 992px) {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+  }
+}
+
+
+
+// burger
+.burger {
+
+  position: relative;
+  width: 50px;
+  height: 37px;
+  cursor: pointer;
+
+  &.__header {
+    margin-right: 1%;
+  }
+}
+
+
+
+.burger-sticky span,
+.burger-sticky span:before,
+.burger-sticky span:after,
+.burger span,
+.burger span:before,
+.burger span:after {
+  width: 50px;
+  position: absolute;
+  height: 2px;
+  background: currentColor;
+  transition: .3s;
+}
+
+.burger-sticky span:before,
+.burger span:before {
+  content: "";
+  top: 10px;
+  transition: top 300ms 300ms, transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.burger-sticky span,
+.burger span {
+  top: 20px;
+}
+
+.burger-sticky span:after,
+.burger span:after {
+  content: "";
+  bottom: 10px;
+  transition: bottom 300ms 300ms, transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.burger-sticky span.active:before,
+.burger span.active:before {
+  content: "";
+  top: 0px;
+  transform: rotate(45deg);
+  transition: top 300ms, transform 300ms 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.burger-sticky span.active:after,
+.burger span.active:after {
+  content: "";
+  bottom: 0;
+  transform: rotate(-45deg);
+  transition: bottom 300ms, transform 300ms 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.burger-sticky span.active,
+.burger span.active {
+  background: rgba(0, 0, 0, 0);
+  //z-index: 110;
+}
+
+.arrow-drop-down-header {
+  @media (min-width: 992px) {
+    display: none;
+  }
+
+  @media (max-width: 991px) {
+    position: absolute;
+    top: 0.8em;
+    left: 134px;
+    transition: $transition;
+    transform: rotate(90deg);
+  }
+
+  &.active-rotate {
+    @media (max-width: 991px) {
+      transform: rotate(-90deg);
+
+    }
+  }
+}
+
+
+//burger
+
+
+
+.section-header-inner {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  position: relative;
+
+  @media (max-width: 991px) {
+    padding-top: 14px;
+  }
+}
+
+
+.lang-select__link {
+  border: 2px solid transparent;
+  transition: $transition;
+  border-radius: $border-radius;
+  font-weight: normal;
+  padding: 3px;
+  @include fluidFontSize(15px, 16px, 320px, 1920px, 18px);
+  @include fluidLineHeight(30px, 30px, 320px, 1920px, 18px);
+
+  &.active {
+    border: 2px solid $color-main;
+  }
+}
+
+.lang-buttons-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+//.lang-select__radio-button:checked ~ .lang-select__link {
+//  border: 2px solid $color-main;
+//}
+
+.lang-select-item-wrapper {
+  position: relative;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.lang-select__radio-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
